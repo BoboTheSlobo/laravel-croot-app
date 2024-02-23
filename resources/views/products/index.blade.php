@@ -5,7 +5,7 @@
         <div class="col-lg-12 margin-tb">
           
             <div class="pull-right">
-                <a class="btn btn-success" href="{{ route('products.create') }}"> Create New Product</a>
+                <a class="btn btn-success" href="{{ route('products.create') }}"> Add Student</a>
             </div>
         </div>
     </div>
@@ -18,16 +18,26 @@
    
     <table class="table table-bordered">
         <tr>
-            <th>No</th>
+            <th>ID</th>
+            <th>Image</th>
             <th>Name</th>
-            <th>Details</th>
+            <th>Grade</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Course</th>
+            <th>Date of Birth</th>
             <th width="280px">Action</th>
         </tr>
         @foreach ($products as $product)
         <tr>
             <td>{{ ++$i }}</td>
+            <td>{{ $product->image }}</td>
             <td>{{ $product->name }}</td>
-            <td>{{ $product->detail }}</td>
+            <td>{{ $product->grade }}</td>
+            <td>{{ $product->email }}</td>
+            <td>{{ $product->phone }}</td>
+            <td>{{ $product->course }}</td>
+            <td>{{ $product->dob }}</td>
             <td>
                 <form action="{{ route('products.destroy',$product->id) }}" method="POST">
    
