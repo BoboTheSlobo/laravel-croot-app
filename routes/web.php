@@ -26,6 +26,14 @@ Route::controller(LoginRegisterController::class)->group(function() {
     Route::post('/authenticate', 'authenticate')->name('authenticate');
     Route::get('/dashboard', 'dashboard')->name('dashboard');
     Route::post('/logout', 'logout')->name('logout');
+    Route::get('/students', 'students')->name('students');
+    Route::get('/news', 'news')->name('news');
+    Route::get('/university-api', 'university-api')->name('universityApi');   
+    Route::get('/profile', 'profile')->name('profile');
+
+
+
+
 });
   
-Route::resource('products', ProductController::class);
+Route::resource('products', ProductController::class)->middleware('auth');

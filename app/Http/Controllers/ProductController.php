@@ -7,18 +7,21 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
-{
+{   
     /**
      * Display a listing of the resource.
      */
     public function index(): View
     {
-        $products = Product::latest()->paginate(5);
-        
-        return view('products.index',compact('products'))
-                    ->with('i', (request()->input('page', 1) - 1) * 5);
+        if (Auth::check()) {
+            $products = Product::latest()->paginate(5); // Change 5 to the desired number of items per page
+            return view('products.index', compact('products'))
+                        ->with('i', (request()->input('page', 1) - 1) * 5);
+        }
+        return redirect()->route('login');
     }
   
     /**
@@ -37,7 +40,6 @@ class ProductController extends Controller
         $request->validate([
             'name' => 'required',
             'detail' => 'required',
-
         ]);
         
         Product::create($request->all());
@@ -51,7 +53,7 @@ class ProductController extends Controller
      */
     public function show(Product $product): View
     {
-        return view('products.show',compact('product'));
+        return view('products.show', compact('product'));
     }
   
     /**
@@ -59,7 +61,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product): View
     {
-        return view('products.edit',compact('product'));
+        return view('products.edit', compact('product'));
     }
   
     /**
