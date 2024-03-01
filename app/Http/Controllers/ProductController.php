@@ -99,7 +99,10 @@ class ProductController extends Controller
         if ($request->hasFile('image')) {
             // Delete the previous image if it exists
             if ($product->image) {
-                Storage::delete('public/assets/images/' . $product->image);
+                $imagePath = public_path('assets/images/' . $product->image);
+                if (file_exists($imagePath)) {
+                    unlink($imagePath);
+                }
             }
 
             // Store the new image
@@ -129,6 +132,14 @@ class ProductController extends Controller
      */
     public function destroy(Product $product): RedirectResponse
     {
+        // Delete the associated image if it exists
+        if ($product->image) {
+            $imagePath = public_path('assets/images/' . $product->image);
+            if (file_exists($imagePath)) {
+                unlink($imagePath);
+            }
+        }
+
         // Delete the product
         $product->delete();
 

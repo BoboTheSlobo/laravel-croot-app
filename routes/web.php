@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
   
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\Auth\LoginRegisterController;
+use App\Http\Controllers\DashboardController;
   
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +20,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 Route::controller(LoginRegisterController::class)->group(function() {
     Route::get('/register', 'register')->name('register');
     Route::post('/store', 'store')->name('store');
@@ -31,9 +33,9 @@ Route::controller(LoginRegisterController::class)->group(function() {
     Route::get('/university-api', 'university-api')->name('universityApi');   
     Route::get('/profile', 'profile')->name('profile');
 
-
-
-
 });
+
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
   
 Route::resource('products', ProductController::class)->middleware('auth');

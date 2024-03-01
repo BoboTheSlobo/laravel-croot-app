@@ -1,7 +1,7 @@
 @extends('products.layout')
 
 @section('content')
-    <div class="row">
+    <div class="row mt-5">
         <div class="col-lg-12 margin-tb">
           
             <div class="pull-right">
@@ -16,7 +16,7 @@
         </div>
     @endif
    
-    <table class="table table-bordered">
+    <table class="table table-bordered mt-5">
         <tr>
             <th>ID</th>
             <th>Image</th>
@@ -30,24 +30,20 @@
         </tr>
         @foreach ($products as $product)
         <tr>
-            <td>{{ ++$i }}</td>
-            <td>{{ $product->image }}</td>
-            <td>{{ $product->name }}</td>
-            <td>{{ $product->grade }}</td>
-            <td>{{ $product->email }}</td>
-            <td>{{ $product->phone }}</td>
-            <td>{{ $product->course }}</td>
-            <td>{{ $product->dob }}</td>
-            <td>
+            <td class="text-center">{{ ++$i }}</td>
+            <td><img src="{{ asset('assets/images/' . $product->image) }}" class="rounded-circle" alt="Product Image" width="80" height="80"></td>
+            <td class="text-center">{{ $product->name }}</td>
+            <td class="text-center">{{ $product->grade }}</td>
+            <td class="text-center">{{ $product->email }}</td>
+            <td class="text-center">{{ $product->phone }}</td>
+            <td class="text-center">{{ $product->course }}</td>
+            <td class="text-center">{{ $product->dob }}</td>
+            <td class="text-center">
                 <form action="{{ route('products.destroy',$product->id) }}" method="POST">
-   
                     <a class="btn btn-info" href="{{ route('products.show',$product->id) }}">Show</a>
-    
                     <a class="btn btn-primary" href="{{ route('products.edit',$product->id) }}">Edit</a>
-   
                     @csrf
-                    @method('DELETE')
-      
+                     @method('DELETE')
                     <button type="submit" class="btn btn-danger">Delete</button>
                 </form>
             </td>
