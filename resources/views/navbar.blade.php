@@ -26,8 +26,8 @@
                             More
                         </a>
                         <ul class="dropdown-menu bg-primary">
-                            <li><a class="dropdown-item text-white" href="{{ route('news') }}">News</a></li>
-                            <li><a class="dropdown-item text-white" href="{{ route('universityApi') }}">University API</a></li>
+                        <li><a class="dropdown-item text-white" href="{{ route('news.index') }}">News</a></li>
+                        <li><a class="dropdown-item text-white" href="{{ route('university') }}">University API</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">

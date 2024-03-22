@@ -16,7 +16,7 @@ class LoginRegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except([
-            'logout', 'dashboard'
+            'logout', 'dashboard', 'news'
         ]);
     }
 
@@ -94,6 +94,16 @@ class LoginRegisterController extends Controller
     } 
     
     /**
+     * Display news page.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function news()
+    {
+        return view('news.index');
+    }
+
+    /**
      * Display a dashboard to authenticated users.
      *
      * @return \Illuminate\Http\Response
@@ -123,7 +133,7 @@ class LoginRegisterController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         return redirect()->route('login')
-            ->withSuccess('You have logged out successfully!');;
+            ->withSuccess('You have logged out successfully!');
     }    
 
 }

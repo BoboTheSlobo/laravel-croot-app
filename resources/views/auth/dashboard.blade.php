@@ -2,6 +2,11 @@
 
 @section('content')
 
+@if ($message = Session::get('success'))
+        <div class="alert alert-success">
+            <p>{{ $message }}</p>
+        </div>
+    @endif
 <div class="container mt-5">
   <div class="row  gap-2 gap-sm-2 gap-md-0 ">
 
@@ -19,7 +24,7 @@
       <div class="card bg-success bg-gradient">
         <div class="card-body py-4 px-3">
         
-        <h3 class="card-title text-start text-light">Total News (Total: 10)</h3>
+        <h3 class="card-title text-start text-light">Total News (Total: {{ $totalNews }})</h3>
         <h3 class="text-start"><i class="bi bi-newspaper text-light"></i></h3>
             
         </div>
@@ -31,7 +36,7 @@
       <div class="card bg-primary bg-gradient">
         <div class="card-body py-4 px-3">
        
-        <h3 class="card-title text-start text-light">Active News (Total: 7)</h3>
+        <h3 class="card-title text-start text-light">Active News (Total: {{ $activeNews }})</h3>
         <h3 class="text-start"><i class="bi bi-newspaper text-light"></i></h3>
 
 
@@ -44,7 +49,7 @@
       <div class="card bg-success bg-gradient">
         <div class="card-body py-4 px-3">
         
-        <h3 class="card-title text-start text-light">Inactive News (Total: 3)</h3>
+        <h3 class="card-title text-start text-light">Inactive News (Total: {{ $inactiveNews }})</h3>
         <h3 class="text-start"><i class="bi bi-newspaper text-light"></i></h3>
 
 
